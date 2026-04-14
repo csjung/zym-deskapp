@@ -1,0 +1,40 @@
+<div class="page-container">
+    <!-- @for (num of numbers; track num) {
+    <div>sdfjsdlf</div>
+    } -->
+<router-outlet />
+</div>
+<nav class="bottom-menu" fxLayout="row" fxLayoutAlign="space-around center">
+<div class="" fxLayout="column" fxLayoutAlign="center center">
+    <a [routerLink]="['/pages/cargo-list']">
+        <img [src]="routerUrl.indexOf('/pages/cargo-input') > -1 || routerUrl.indexOf('/pages/cargo-list') > -1  ? '/img/footMenu_On_01.svg' : '/img/footMenu_01.svg'" />
+    </a>    
+    <a [routerLink]="['/pages/chat-list']" [ngClass]="routerUrl == '/pages/chat-list' ? 'm05 on' : 'm05'"><span>화물등록</span></a>
+</div> 
+<div class="" fxLayout="column" fxLayoutAlign="center center">
+    <a [routerLink]="['/pages/auto-order']">
+        <img [src]="routerUrl == '/pages/auto-order' ? '/img/footMenu_On_03.svg' : '/img/footMenu_03.svg'" />
+    </a> 
+    <a [routerLink]="['/pages/auto-order']"><span>자동오더</span></a>
+</div>    
+<div class="" fxLayout="column" fxLayoutAlign="center center">
+    <a [routerLink]="['/pages/chat-list']">
+        <img [src]="(routerUrl == '/pages/chat-list' || routerUrl.indexOf('/pages/group-chat-room') > -1 ) ? '/img/footMenu_On_05.svg' : '/img/footMenu_05.svg'" />
+    </a>
+    <a [routerLink]="['/pages/chat-list']"><span>채팅</span></a>
+</div> 
+<div class="" fxLayout="column" fxLayoutAlign="center center">
+    <a [routerLink]="['/pages/loc-find']">
+        <img [src]="routerUrl == '/pages/loc-find' ? '/img/footMenu_On_02.svg' : '/img/footMenu_02.svg'" />
+    </a>  
+    <a [routerLink]="['/pages/loc-find']"><span>화물추적</span></a>
+</div> 
+
+<div class="" fxLayout="column" fxLayoutAlign="center center">
+    <a [routerLink]="['/pages/my-info']">
+        <img [src]="routerUrl == '/pages/my-info' ? '/img/footMenu_On_04.svg' : '/img/footMenu_04.svg'" />
+    </a>
+    <a [routerLink]="['/pages/my-info']"><span>나의정보</span></a>
+</div> 
+
+</nav>

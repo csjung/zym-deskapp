@@ -1,0 +1,16 @@
+<div fxLayout="column">
+    <div class="title-bg" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%">
+        <h2 fxFlex="100px">자동오더</h2>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="space-between center" style="height: calc(100vh - 170px) !important;padding-top: 10px;" >
+        <div fxLayout="column" fxLayoutGap="5px" style="margin: 10px; " fxLayoutAlign="center center" style="width: 90%;height: 90% !important;">
+            <textarea placeholder="" [(ngModel)]="orderTxt" style="width: 100%;height: 100% !important;"></textarea>
+        </div>
+
+        <div class="btn-group" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+            <button type="button" class="button blue" style="width: 100px !important;height: 30px;line-height: 0 !important;" (click)="order('/zymAi/txtImOrder.do')">수입오더</button>&nbsp;&nbsp;
+            <button type="button" class="button red" style="width: 100px !important;height: 30px;line-height: 0 !important;" (click)="order('/zymAi/txtExOrder.do')">수출오더</button>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>    

@@ -1,0 +1,35 @@
+<div class="pop_head">
+  <span class="pop_title">화물필터</span>
+  <button type="button" class="pop_close" id="close" (click)="close($event)"><img src="/img/icon20_close.svg" alt="close"></button>
+</div>
+<div class="pop_content">
+  <div class="filter_selWrap">
+    <div class="sel_list">
+      @for (item of cargoTypes; track item) {
+        <button type="button" [ngClass]="getClassStr('cargoType', item)" (click)="saveFilter($event, 'cargoType', item)">{{item}}</button>
+      }
+    </div>
+  </div>
+
+  <div class="filter_selWrap">
+    <p class="label">컨테이너 타입</p>
+    <div class="sel_list">
+      @for (item of sizeTypes; track item) {
+        <button type="button" [ngClass]="getClassStr('sizeType', item)" (click)="saveFilter($event, 'sizeType', item)">{{item}}</button>
+      }
+    </div>
+  </div>
+
+  <div class="filter_selWrap">
+    <p class="label">작업타입</p>
+    <div class="sel_list">
+        <button [ngClass]="getClassStr('workType', '전체')" (click)="saveFilter($event, 'workType', '전체')">전체</button>
+      @for (item of workTypes; track item) {
+        <button [ngClass]="getClassStr('workType', item.workName)" (click)="saveFilter($event, 'workType', item.workName)">{{item.workName}}</button>
+      }
+    </div>
+  </div>
+  <div class="btn_wrap" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <button type="button" class="button blue" style="width: 50%;" (click)="init()"><span>초기화</span></button>
+  </div>
+</div>

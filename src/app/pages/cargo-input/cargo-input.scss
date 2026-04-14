@@ -1,0 +1,49 @@
+fieldset {
+  all: unset;
+}
+form input, select, textarea {
+    border-radius: 3px !important;
+    height: 30px !important;
+    background: #fff !important;
+    border: 1px solid #c9c9c9 !important;
+    font-size: 12px !important;
+    padding: 0 7px;
+}
+
+form input[type=text], select {
+    width: 110px !important;
+}
+
+form label {
+    font-size: 12px !important;
+    color: #19476f !important;
+    font-weight: 700 !important;
+    width: 60px;
+}
+
+form span {
+    font-size: 12px !important;
+}
+
+.button {
+    display: block;
+    height: 2.87rem;
+    line-height: 2.87rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.button.blue {
+    color: #fff;
+    background: var(--blue01);
+}
+
+.button.red {
+    color: #fff;
+    background: var(--red01);
+}
+
+.bgred {
+    background-color:#edafaf !important;
+}

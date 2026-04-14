@@ -1,0 +1,294 @@
+<div fxLayout="column" >    
+    <form [formGroup]="form" (ngSubmit)="onSave()" fxLayout="column">
+        <div class="title-bg" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%">
+            <div fxLayout="row" fxLayoutAlign="none center">
+            &nbsp;&nbsp;<a href="javascript:history.back();" class="btn_back"><img src="img/icon20_back.svg" alt="back" /></a>&nbsp;
+            <h2 fxFlex="100px">화물등록</h2>
+            </div>
+            <div class="btn-group" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="5px">
+                <button type="submit" class="button blue" style="width: 70px !important;height: 30px;line-height: 0 !important;">수정</button>&nbsp;&nbsp;
+            </div>
+        </div>
+    
+        <div fxLayout="column" style="margin-left: 5px;margin-top: 10px;" fxLayoutGap="5px">
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>작업일자</label>
+                    <input type="text" formControlName="inDate" style="width: 65px !important;"  [matDatepicker]="picker"  (click)="picker.open()"/> &nbsp;
+                    <mat-datepicker #picker></mat-datepicker>
+                    <input type="text" formControlName="inTime" style="width: 30px !important;" appTime />
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>청구처</label>
+                    <input type="text" formControlName="cheongguObj" [matAutocomplete]="partnerAuto"    />
+                    <mat-autocomplete #partnerAuto="matAutocomplete" [displayWith]="displayFn"> 
+                        @for (option of cheongguOptions | async; track option.id) {  
+                            <mat-option [value]="option" >{{option.name | company}}</mat-option>
+                        }
+                    </mat-autocomplete>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>화주</label>
+                    <input type="text" formControlName="cargoOwnerObj" [matAutocomplete]="ownerAuto" />
+                    <mat-autocomplete #ownerAuto="matAutocomplete" [displayWith]="displayOwner"> 
+                        @for (option of ownerOptions | async; track option.id) {  
+                            <mat-option [value]="option" >{{option.company}}</mat-option>
+                        }
+                    </mat-autocomplete>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>지역</label>
+                    <input type="text" formControlName="area" [matAutocomplete]="areaAuto"  >
+                    <mat-autocomplete #areaAuto="matAutocomplete" [displayWith]="displayArea" > 
+                        @for (option of areaOptions | async; track option.id) {   
+                        <mat-option [value]="option" >{{option.areaName}}</mat-option>
+                        } 
+                    </mat-autocomplete>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>화주담당</label>
+                    <input type="text" formControlName="damdang"   />
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>작업장소</label>
+                    <input type="text" formControlName="addr"  >
+                </div>
+            </div>
+            <div style="border-bottom: 1px solid #dbdcdd;"></div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>입/출</label>
+                    <div fxLayout="row" class="" fxLayoutAlign="center center">
+                        <input type="radio" class="" formControlName="cargoType" value="수입"><span class="cIn">수입</span>
+                        <input type="radio" class="" formControlName="cargoType" value="수출"><span class="cOut">수출</span>
+                        <input type="radio" class="" formControlName="cargoType" value="카고"><span>카고</span>
+                    </div>
+
+                    <!-- <input type="text" formControlName="damdang"  화주담당" /> -->
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>{{form.value.cargoType  == '수입' ? 'M.B/L' : 'B/K No.'}}</label>
+                    @if (form.value.cargoType == '수입') {
+                        <input type="text"  formControlName="blno" >
+                    }
+                    @if (form.value.cargoType != '수입') {
+                        <input type="text"  formControlName="bkno">
+                    }
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>컨테이너</label>
+                    <input type="text"  formControlName="container" appUpper (ngModelChange)="checkDigit()" [style.background]="digitFlag ? '#edafaf !important' : ''"/>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>H.B/L</label>
+                    <input type="text" formControlName="blno"  >
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>{{form.value.cargoType == '수입' ? 'D/O No.' : form.value.cargoType == '수출' ? 'SEAL No.' : '부피'}}</label>
+                    @if (form.value.cargoType == '수입') {
+                        <input type="text"  formControlName="dono" >
+                    }
+                    @if (form.value.cargoType == '수출') {
+                        <input type="text"  formControlName="sealNo" >
+                    }
+                    @if (form.value.cargoType == '카고') {
+                        <input type="text"  formControlName="volume" >
+                    }
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>상차지</label>
+                    <input type="text" formControlName="caravan" [matAutocomplete]="putPlaceAuto" >
+                    <mat-autocomplete #putPlaceAuto="matAutocomplete" [displayWith]="displayPutPlace" > 
+                        @for (option of putPlaceOptions1 | async; track option.id) {   
+                        <mat-option [value]="option" >{{option.groupName}} {{option.placeName}}</mat-option>
+                        } 
+                    </mat-autocomplete>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>배차구분</label>
+                    <fieldset [disabled]="cargo.id && form.value.status != '접수'">
+                    <div fxLayout="row" class="" fxLayoutAlign="center center" >                    
+                        <input type="radio" class="" name="youngcha" formControlName="youngcha" value="자차"><span style="margin-right: 0px;" class="">자차</span>
+                        <input type="radio" class="" name="youngcha" formControlName="youngcha" value="용차"><span style="margin-right: 0px;" class="">용차</span>
+                        <input type="radio" class="" name="youngcha" formControlName="youngcha" value="공유"><span style="margin-right: 0px;" class="cIn">공유</span>
+                     </div>
+                     </fieldset>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>하차지</label>
+                    <input type="text" formControlName="quit" [matAutocomplete]="putPlaceAuto2" >
+                    <mat-autocomplete #putPlaceAuto2="matAutocomplete" [displayWith]="displayPutPlace" > 
+                        @for (option of putPlaceOptions2 | async; track option.id) {   
+                        <mat-option [value]="option" >{{option.groupName}} {{option.placeName}}</mat-option>
+                        } 
+                    </mat-autocomplete>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    @if(f.youngcha.value != '공유') {
+                    <label>용차</label>
+                    <input type="text" formControlName="transComp" [matAutocomplete]="partnerAuto2" [readonly]="f.youngcha.value != '용차' ? 'readonly' : ''" />
+                    <mat-autocomplete #partnerAuto2="matAutocomplete" [displayWith]="displayFn"> 
+                        @for (option of cheongguOptions | async; track option.id) {  
+                            <mat-option [value]="option" >{{option.name | company}}</mat-option>
+                        }
+                    </mat-autocomplete>
+                    } @else {
+                        <label>가맹사</label>
+                        <input type="text" readonly="readonly" value="(주)에이아이로직스" />
+                    }
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>차량정보</label>
+                    @if(f.youngcha.value == '자차') {
+                    <input type="text" formControlName="car" [matAutocomplete]="carAuto" >
+                    <mat-autocomplete #carAuto="matAutocomplete" [displayWith]="displayCar" > 
+                        @for (option of carOptions | async; track option.id) {   
+                        <mat-option [value]="option" >{{option.carNum}}</mat-option>
+                        } 
+                    </mat-autocomplete>
+                    } @else {
+                    <input type="text" formControlName="carNum" [readonly]="form.value.youngcha=='공유'">
+                    }
+                </div>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>작업구분</label>
+                    <select  formControlName="workType" >
+                    <option value="">선택</option>
+                    @for (item of workTypeList; track item) {
+                        <option [value]="item.workName">{{item.workName}}</option>
+                    }
+                    </select>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>상태</label>
+                    <select  formControlName="status">
+                        <option value="">선택</option>
+                        @for (item of status; track item) {
+                        <option [value]="item">{{item}}</option>
+                        }
+                    </select>
+                </div>                
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label style="width: 45px !important;">기본운임</label>
+                    <button type="button" matIconButton [matMenuTriggerFor]="menu">
+                    <mat-icon style="width: 12px; height: 12px; font-size: 12px; line-height: 12px;">question_mark</mat-icon>
+                    </button>&nbsp;
+                    <mat-menu #menu="matMenu">
+                        <div style="padding: 10px;"  fxLayout="column" fxLayoutGap="10px"> 
+                            <div fxLayout="row" class="input" fxLayoutAlign="center center" fxLayoutGap=""> 
+                                <input type="radio" class="" checked value="39c1ef16-53f4-4e6f-811e-4fd4317143e2"><span class="">26년</span>
+                                <input type="checkbox" [(ngModel)]="feeFlag2" [ngModelOptions]="{standalone: true}" (ngModelChange)="calFee()">
+                                <span class="txt">기본포함</span>&nbsp;
+                                <input type="number" style="width: 55px;" [(ngModel)]="feeFlag3" [ngModelOptions]="{standalone: true}" (ngModelChange)="calFee()" placeholder="할증">&nbsp;<span class="txt">%</span>
+                            </div>
+                            <div (click)="setPrice(priceValue1)" fxLayout="row" fxLayoutAlign="none center" >
+                                <span style="width: 30px;">안전</span>
+                                <span style="text-align: right;border-right: 1px solid #6b6666;width: 80px;">{{priceValue1 | number}}&nbsp;</span>
+                                <span style="text-align: right;width: 80px;">{{priceValue4 | number}}</span>              
+                            </div>
+                            <div (click)="setPrice(priceValue2)" fxLayout="row" fxLayoutAlign="none center" >
+                                <span style="width: 30px;">운수</span>
+                                <span style="text-align: right;border-right: 1px solid #6b6666;width: 80px; ">{{priceValue2 | number}}&nbsp;</span>
+                                <span style="text-align: right;width: 80px;">{{priceValue5 | number}}</span>
+                            </div>
+                            <div (click)="setPrice(priceValue3)" fxLayout="row" fxLayoutAlign="none center" >
+                                <span style="width: 30px;">위탁</span>
+                                <span style="text-align: right;border-right: 1px solid #6b6666;width: 80px;">{{priceValue3 | number}}&nbsp;</span>
+                                <span style="text-align: right;width: 80px;">{{priceValue6 | number}}</span>
+                            </div>
+                             @if (  (form.value.caravan?.groupName != form.value.quit?.groupName && (form.value.caravan?.groupName?.indexOf('부산') > -1) && (form.value.quit?.groupName?.indexOf('부산') > -1)) 
+                                || (form.value.caravan?.groupName != form.value.quit?.groupName && (form.value.caravan?.groupName?.indexOf('인천') > -1) && (form.value.quit?.groupName?.indexOf('인천') > -1)) )  {
+                            <div fxLayout="row" class="input" fxLayoutAlign="center center" style="height: 40px;border-bottom: 1px solid #eee;" fxLayoutGap="30px"> 
+                                <div fxLayout="row" fxLayoutAlign="none center">
+                                <input type="radio" class="" [(ngModel)]="feeFlag4" [ngModelOptions]="{standalone: true}" [value]="form.value.caravan?.groupName" (ngModelChange)="calFee()"><span class="">{{form.value.caravan?.groupName}}</span>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="none center">
+                                <input type="radio" class="" [(ngModel)]="feeFlag4" [ngModelOptions]="{standalone: true}" [value]="form.value.quit?.groupName"  (ngModelChange)="calFee()"><span class="">{{form.value.quit?.groupName}}</span>              
+                                </div>
+                            </div>
+                            }
+                            @if (  (form.value.caravan?.groupName != form.value.quit?.groupName && (form.value.caravan?.groupName?.indexOf('부산신항') > -1) && (form.value.quit?.groupName?.indexOf('인천') > -1)) 
+                                || (form.value.caravan?.groupName != form.value.quit?.groupName && (form.value.caravan?.groupName?.indexOf('인천') > -1) && (form.value.quit?.groupName?.indexOf('부산신항') > -1)) )  {
+                            <div fxLayout="row" class="input" fxLayoutAlign="center center" style="height: 40px;border-bottom: 1px solid #eee;" fxLayoutGap="5px"> 
+                                <div fxLayout="row" fxLayoutAlign="none center">
+                                <input type="radio" class="" [(ngModel)]="feeFlag4" [ngModelOptions]="{standalone: true}" value="신항의왕" (ngModelChange)="calFee()"><span class="">부산신항(편도)</span>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="none center">
+                                <span class="txt" style="color: red;">인천 4만원 별도</span>              
+                                </div>
+                            </div>
+                            }
+                            @if (  (form.value.caravan?.groupName != form.value.quit?.groupName && (form.value.caravan?.groupName?.indexOf('부산북항') > -1) && (form.value.quit?.groupName?.indexOf('인천') > -1)) 
+                                || (form.value.caravan?.groupName != form.value.quit?.groupName && (form.value.caravan?.groupName?.indexOf('인천') > -1) && (form.value.quit?.groupName?.indexOf('부산북항') > -1)) )  {
+                            <div fxLayout="row" class="input" fxLayoutAlign="center center" style="height: 40px;border-bottom: 1px solid #eee;" fxLayoutGap="5px"> 
+                                <div fxLayout="row" fxLayoutAlign="none center">
+                                <input type="radio" class="" [(ngModel)]="feeFlag4" [ngModelOptions]="{standalone: true}" value="북항의왕" (ngModelChange)="calFee()"><span class="">부산북항(편도)</span>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="none center">
+                                <span class="txt" style="color: red;">인천 4만원 별도</span>              
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        
+                    </mat-menu>
+                    <input type="text" formControlName="price" appCurrency [readOnly]="(cargo?.parentsId  || cargo?.billOutId) ? true : false">
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>추가운임</label>
+                    <input type="text" formControlName="etcPrice" appCurrency [readOnly]="(cargo?.parentsId  || cargo?.billOutId) ? true : false">
+                </div>                
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="50%">
+                    <label>하불금액</label>
+                    <input type="text" formControlName="fallPrice" appCurrency [readOnly]="(cargo?.billInId) ? true : false">
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <label>면허/자가</label>
+                    <div fxLayout="row" class="btn-group" fxLayoutAlign="none center"  fxLayoutGap="5px">
+                        <input type="checkbox" [(ngModel)]="licenseType" [ngModelOptions]="{standalone: true}">
+                        <span class="txt">면허</span>
+                        <input type="checkbox" [(ngModel)]="selfType" [ngModelOptions]="{standalone: true}">
+                        <span class="txt">자가</span>
+                    </div>
+                </div>                
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100%">
+                    <label>차량비고</label>
+                    <textarea formControlName="carRemark" style="width: 70% !important;height: 50px !important;" ></textarea>
+                </div>
+                             
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="100%">
+                    <label>청구비고</label>
+                    <textarea formControlName="priceRemark" style="width: 70% !important;height: 40px !important;" ></textarea>
+                </div>
+                             
+            </div>
+        </div>
+    </form>
+</div>

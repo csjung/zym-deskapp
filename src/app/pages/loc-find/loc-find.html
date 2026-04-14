@@ -1,0 +1,46 @@
+<div fxLayout="column">
+    <div class="title-bg" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%">
+        <h2 fxFlex="100px">화물추적</h2>
+        <div fxLayout="row">
+            <button type="button" class="button blue" style="width: 100px !important;height: 30px;line-height: 0 !important;" (click)="search()">검색</button>&nbsp;&nbsp;
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 10px; padding-bottom: 10px; background-color: white; " >
+        <div fxLayout="row">
+            &nbsp;<input type="text" style="width: 150px;" [formControl]="carControl" placeholder="차량번호" [matAutocomplete]="carAuto">
+            <mat-autocomplete #carAuto="matAutocomplete" [displayWith]="displayCar" > 
+                @for (option of carOptions | async; track option) {   
+                <mat-option [value]="option" >{{option.carNum}}</mat-option>
+                } 
+            </mat-autocomplete>
+        </div>
+        
+    </div>
+    <div fxLayout="row" fxLayoutAlign="none center" fxFlex="100%">
+        <div id="map" style="height: calc(100vh - 300px) !important;padding-top: 5px;width: 100% !important;" ></div>
+    </div>
+    <div class="cargo" fxLayout="column" fxLayoutAlign="none" fxLayoutGap="5px" style="padding-left: 10px; padding-top: 5px; padding-bottom: 10px; background-color: white; " >
+        <div fxLayout="row" fxLayoutAlign="none center">
+            <div fxLayout="row" style="width: 40% !important;" fxLayoutAlign="none center">
+                <label style="width: 60px;">작업일시 : </label>
+                <span >{{carCargo.inDate}} {{carCargo.inTime}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <label style="width: 60px;">운송사 : </label>
+                <span>{{carCargo.franchises?.company}}</span>
+            </div>                      
+        </div>
+        <div fxLayout="row" fxLayoutAlign="none center">
+            <div fxLayout="row" style="width: 40% !important;" fxLayoutAlign="none center">
+                <label style="width:60px;">화주 : </label>
+                <span>{{carCargo.cargoOwner}}</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="none center">
+                <label style="width: 60px;">주소 : </label>
+                <span>{{carCargo.addr}}</span>
+            </div>                 
+        </div>
+    </div>
+     
+    
+</div>    

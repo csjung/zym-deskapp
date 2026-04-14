@@ -1,0 +1,81 @@
+<div class="chat" style="height: calc(100vh - 100px) !important;">    
+    <!-- <div class="gnb_wrap title-bg" fxLayout="row" fxLayoutAlign="none center">
+        <a href="javascript:history.back();" class="btn_back"><img src="img/icon20_back.svg" alt="back" /></a>
+        <h2></h2>
+    </div> -->
+    <div class="rooms" fxLayout="column">
+        <div class="chat_header" fxLayout="row" fxFlex="60px" fxLayoutAlign="space-between center">
+            <div class="header_left" fxLayout="row" fxLayoutGap="5px" >
+                <a (click)="leave()" class="btn_back"><img src="img/icon20_back.svg" alt="back" /></a>
+                <span>{{targetNameData}}</span>
+            </div>
+            <div class="header_left" fxLayout="row" fxFlex="70px" fxLayoutAlign="none center">
+                <!-- <button mat-icon-button><mat-icon>search</mat-icon></button> -->
+            </div>
+        </div>
+        <div class="chat-body" #chatBody fxLayout="column" style="overflow: auto;" fxLayoutGap="10px" (scroll)="onScroll($event)" style="height: calc(100vh - 220px) !important; overflow: auto;">
+            @for (chat of chatList(); track chat; let last = $last) {
+            @if (chat.writerId == user.id) {
+                @if (chat.msgType == 'FILE') {
+                <div [id]="chat.id" fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="5px" class="me" style="height: 50px;">            
+                    <span class="write_date">{{chat.writeDate | chatDate}}</span> 
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="file_msg">
+                    <a [href]="DOWN_URL + chat.fileInfoId" title="첨부파일 다운로드" target="_blank" class="attachment"><span>{{ chat.message }}</span></a>
+                    <a [href]="DOWN_URL + chat.fileInfoId" title="첨부파일 다운로드" target="_blank" class="attachment"><button mat-icon-button><mat-icon>archive</mat-icon></button></a>
+                    </div>
+                </div>
+                }@else {
+                <div [id]="chat.id" fxLayout="row" fxLayoutAlign="end" fxLayoutGap="5px" class="me">
+                <div fxLayout="column" fxLayoutAlign="end center">
+                    <span class="write_date">{{chat.writeDate | chatDate}}</span>
+                </div>
+                <div class="message_me">{{ chat.message }}</div>
+                </div>
+                }
+            } @else {
+                @if (chat.msgType == 'FILE') {
+                <div [id]="chat.id" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="">
+                    <img src="/img/person_chat.png" class="chat_img" />
+                    <div fxLayout="column" fxLayoutGap="5px" >
+                    <span class="member_name">{{chat.member?.memberName}}</span>
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="file_msg">
+                        <a [href]="DOWN_URL + chat.fileInfoId" title="첨부파일 다운로드" target="_blank" class="attachment"><span>{{ chat.message }}</span></a>
+                        <a [href]="DOWN_URL + chat.fileInfoId" title="첨부파일 다운로드" target="_blank" class="attachment"><button mat-icon-button><mat-icon>archive</mat-icon></button></a>
+                    </div>
+                    </div>
+                    <span class="write_date">{{chat.writeDate | chatDate}}</span> 
+                </div>
+                }@else {  
+                <div [id]="chat.id" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                <img src="/img/person_chat.png" class="chat_img" />
+                <div class="room_title" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="5px">
+                    <span class="member_name">{{chat.member?.memberName}}</span>
+                    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="5px">
+                    <div class="message_other">{{ chat.message }}</div>
+                    <span class="write_date">{{chat.writeDate | chatDate}}</span>
+                    </div>
+                </div>
+                </div>
+                }
+            }
+            }
+        </div>
+        <div class="chat-footer" fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="10px">
+            <button mat-icon-button style="padding-left: 5px;" (click)="fileInput.click()" ><mat-icon>attach_file</mat-icon></button>   
+            <input type="text" class="input-msg" [(ngModel)]="message" (keydown.enter)="onEnterPressed($event)" placeholder="메세지를 입력 해 주세요.">
+            <input #fileInput type="file" multiple hidden (change)="onFileSelected($event)" />   
+            <!-- <button mat-flat-button color="primary" style="margin-right: 10px;" (click)="onEnterPressed($event)">전송</button> -->
+            <button mat-icon-button style="padding-right: 5px;" (click)="onEnterPressed($event)" ><mat-icon>upload</mat-icon></button>   
+        </div>
+   </div>    
+</div>
+@if (loading()) {
+<div id="loading">
+  <div class="loading">
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+  </div>
+</div>
+}

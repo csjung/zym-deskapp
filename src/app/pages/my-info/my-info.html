@@ -1,0 +1,15 @@
+<div fxLayout="column" fxFlex="100%">
+    <div class="title-bg" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%">
+        <h2 fxFlex="100px">마이페이지</h2>
+    </div>
+    <div class="top_info">
+        <div class="name_area" fxLayout="column" fxLayoutGap="10px">
+        <span class="s_txt">안녕하세요 :)</span>
+        <span class="s_tit"><em>{{user.memberName}}</em> 님</span>
+        </div>        
+    </div>
+    <div class="helpBtnWrap">
+        <button type="button" class="logOut" (click)="logout()"><span>로그아웃</span></button>
+    </div>
+
+</div>    

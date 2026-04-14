@@ -1,0 +1,53 @@
+input {
+    border-radius: 3px;
+    border: 1px solid var(--line01) !important;
+    height: 30px;
+    padding: 0 7px;
+    font-size: 12px !important;
+} 
+
+.list {
+    border-radius: 8px;
+    background: #fff;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.state_label {
+    display: inline-block;
+    padding: .25rem;
+    border-radius: 2px;
+    font-size: .75rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.add span {
+    width: 67%;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--black01);
+}
+
+.price {
+    font-size: 15px !important; 
+    font-weight: 700 !important;
+}
+
+.date span { font-size: .75rem; font-weight: 400; color: var(--blue-gray01); }
+
+.navi_wrap .point,
+.navi_wrap .trade_label{ display: table-cell; vertical-align: middle; }
+
+.navi_wrap .point{ padding-left: .875rem; }
+.navi_wrap .point.import{ background: url(/img/point_import.svg) no-repeat left 50%; }
+.navi_wrap .point.export{ background: url(/img/point_export.svg) no-repeat left 50%; }
+.navi_wrap .point li { font-size: .75rem; color: var(--black02); font-weight: 400; }
+.navi_wrap .point li + li { margin-top: .5rem; }
+
+.navi_wrap .trade_label{ font-size: .875rem; font-weight: 700; padding: .25rem .5rem; border-radius: 4px; width: 3.625rem; text-align: center; }
+.navi_wrap .trade_label.import{ color:var(--blue01); background: #ECF4FF; }
+.navi_wrap .trade_label.export{ color:var(--red01); background: #FFEBEB; }
+
+.btn_filter{ display: block; font-size: 0.875rem; line-height: 1.25rem; color: var(--black04); padding-right: 1rem; background: url(/img/icon_s_filter.svg) no-repeat right 4px; }
+.btn_filter.on{ color: var(--blue01); background: url(/img/icon_s_filter_blue.svg) no-repeat right 4px; }

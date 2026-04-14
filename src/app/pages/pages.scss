@@ -1,0 +1,28 @@
+.page-container {
+//   padding-bottom: 60px; /* 하단 메뉴 높이만큼 여백 */
+  background-color: #F3F5F8;
+}
+.bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: #ffffff;
+//   border-top: 1px solid #ddd;
+  border-radius: 16px 16px 0 0;
+  padding: 1rem 0.75rem;
+  box-shadow: 0px -10px 10px 0px rgba(0, 0, 0, 0.10);
+//   border-top: 1px solid #ddd;
+   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+  z-index: 1000;
+}
+
+.bottom-menu a span {
+    font-size: 0.75rem;
+    color: var(--black02);
+    font-weight: 400;
+}
+

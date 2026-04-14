@@ -1,0 +1,39 @@
+<div style="background-color: #F3F5F8;height: 100%;padding: 1.0rem;" >
+    <div>
+    <img class="" src="/img/login_logo.svg" alt="" style="margin-top: 2rem;">
+    </div>
+    <div>
+    <h3>오늘도 <span class="txtBlue bold">힘찬 하루</span><br />되세요.</h3>
+    </div>
+    <div style="margin-top: 2.62rem;">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="" fxLayout="column" fxLayoutAlign="none none" fxLayoutGap="20px">                
+            <div class="" fxLayout="row" fxLayoutAlign="none center"> 
+                <input type="number" formControlName="saupNum" placeholder="사업자등록번호 (번호만)" />    
+            </div>
+            <div class="" fxLayout="row" fxLayoutAlign="none center">
+                <input type="text" placeholder="아이디" class="" formControlName="memberId" autocomplete="off">    
+            </div>
+            <div class="" fxLayout="row" fxLayoutAlign="none center" >
+                <input [type]="passwordVisible ? 'text' : 'password'" placeholder="비밀번호 입력" class=""  formControlName="memberPass" autocomplete="current-password">
+                @if (!passwordVisible) {
+                    <mat-icon (click)="passwordVisible=!passwordVisible" class=""
+                    style="color: #408cff; position: relative;top:5px;left: -40px;width: 40px;height: 30px;">visibility</mat-icon>
+                }
+                @if (passwordVisible) {
+                    <mat-icon (click)="passwordVisible=!passwordVisible" class=""
+                    style="color: #408cff; position: relative;top:5px;left: -40px;width: 40px;height: 30px;">visibility_off</mat-icon>
+                }
+            </div>
+            <div class="inp_chk st01">
+                <input type="checkbox" id="auto_login"  [(ngModel)]="autoLogin" [ngModelOptions]="{standalone: true}">
+                <label for="auto_login">자동 로그인</label>
+            </div>
+            <div class="login_btnWrap">
+                <button type="submit" class="button blue" [disabled]="!form.valid"><span>로그인</span></button>
+                
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

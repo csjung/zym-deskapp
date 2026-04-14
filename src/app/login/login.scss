@@ -1,0 +1,54 @@
+h3 {
+    font-size: 1.5rem;
+    color: var(--black01);
+    font-weight: 300;
+    line-height: normal;
+}
+
+input[type=text], input[type=number], input[type=password] {
+    border-radius: 4px;
+    border: 1px solid var(--line01) !important;
+    width: 100%;
+    padding: 0.75rem 1rem;
+}
+
+.inp_chk label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.inp_chk {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.inp_chk.st01 input {
+    width: 20px;
+    height: 20px;
+}
+
+.inp_chk.st01 label {
+    min-height: 20px;
+    padding-left: 10px;
+    line-height: 1.2rem;
+    font-size: 1rem;
+    color: var(--black01);
+}
+.button {
+    display: block;
+    width: 100%;
+    height: 2.87rem;
+    line-height: 2.87rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.button.blue {
+    color: #fff;
+    background: var(--blue01);
+}
+

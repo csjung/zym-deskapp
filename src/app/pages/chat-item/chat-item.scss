@@ -1,0 +1,35 @@
+.memberName {
+    width: 150px !important; 
+    color: black;
+    font-weight: 600;
+    white-space: nowrap; 
+    overflow: hidden;   
+    text-overflow: ellipsis;
+    font-size: 15px;
+}
+
+.lastMsg {
+    font-size: 12px;
+    color: black;  
+    white-space: nowrap; 
+    overflow: hidden;   
+    text-overflow: ellipsis;
+    width: 160px;
+    // line-height: 16px;
+}
+
+.memberNum {
+    font-size: 12px;
+}
+
+.lastMsgTime {
+    font-size: 12px;
+}
+
+
+.ellipsis {
+  width: 200px;        /* 고정 또는 max-width */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow: hidden;    
+  text-overflow: ellipsis;
+}

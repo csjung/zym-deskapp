@@ -1,0 +1,29 @@
+<div fxLayout="column" fxFlex="100%">
+    <div class="title-bg" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%">
+        <h2 fxFlex="100px">채팅</h2>
+        <div class="topBtn" fxLayout="row" fxLayoutGap="1rem" fxFlex="100%">
+        <input type="text" placeholder="사용자, 채팅글..." class="" [(ngModel)]="filter"  (ngModelChange)="setMemberList();"/>    
+        <Button><img src="/img/icon24_search.svg" alt="검색" /></Button>
+        <!-- <Button id="setting"><img src="img/icon24_setting.svg" alt="설정" /></Button> -->
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" style="padding: 10px ;" >
+        <!-- <div fxLayout="column" fxFlex="160px" class="list">
+            @for (ele of memberList(); track ele) {
+                <div fxLayout="row" style="margin: 8px;" fxLayoutAlign="space-between center">
+                    <span>{{ele.memberName}}</span>
+                    <mat-icon [routerLink]="['/pages/group-chat-room/' + user.id + '/' + ele.id]" title="채팅" style="cursor: pointer;color: rgb(66, 130, 226);">chat</mat-icon>
+                </div>
+            }
+        </div>   -->
+         <div fxLayout="column" class="list" fxFlex="100%">
+            @for (item of chatRoomList; track item) {
+              <ng-templete [routerLink]="['/pages/group-chat-room/' + item.chatRoom.id]">
+              <app-chat-item [chatRoom]="item.chatRoom"></app-chat-item>
+              </ng-templete>
+            }
+        </div>    
+
+         
+    </div>
+</div>

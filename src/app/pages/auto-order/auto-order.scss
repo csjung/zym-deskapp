@@ -1,0 +1,26 @@
+textarea {
+    border-radius: 3px !important;
+    background: #fff !important;
+    border: 1px solid #c9c9c9 !important;
+    font-size: 13px !important;
+    padding: 7px 7px;
+}
+
+.button {
+    display: block;
+    height: 2.87rem;
+    line-height: 2.87rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.button.blue {
+    color: #fff;
+    background: var(--blue01);
+}
+
+.button.red {
+    color: #fff;
+    background: var(--red01);
+}

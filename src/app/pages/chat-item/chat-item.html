@@ -1,0 +1,26 @@
+<div fxLayout="row" class="mL10" fxLayoutAlign="space-between center" fxLayoutGap="10px" style="margin-right: 3px;">
+    <div fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="10px" fxFlex="200px">
+        <img src='/img/common/person.png'  />
+        <div fxLayout="column" fxLayoutGap="7px">
+            <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="5px">
+                @if (chatRoom.roomName) {
+                    <label class="memberName">{{chatRoom.roomName}}</label>
+                } @else {
+                    <div fxLayout="row" fxLayoutAlign="start" class="memberName" >
+                        <span>{{otherName}}</span>
+                    </div>
+                }
+            </div>
+            <div class="lastMsg">{{chatRoom.lastMsg}}</div>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="end end" >
+        <label class="lastMsgTime">{{chatRoom.lastMsgTime | chatDate}}</label>
+         @for (item of roomMemberList; track $index;) {
+             @if (item.memberId == user.id && item.notReadCount > 0) {
+                <div matBadge="{{item.notReadCount}}">&nbsp;</div>
+             }
+         }
+       
+    </div>
+</div>

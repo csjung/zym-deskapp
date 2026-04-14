@@ -1,1 +1,199 @@
-/* You can add global styles to this file, and also import other style files */
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(243, 245, 248);
+}
+app-root {
+  display: block;
+  min-height: 100vh;
+  background-color: rgb(243, 245, 248);
+}
+/* 컬러 스타일 */
+:root{
+    --black01: #191919;
+    --black02: #333;
+    --black03: #555;
+    --black04: #666;
+    --black05: #888;
+
+    --blue-gray01: #757B86;
+    --blue-gray02: #AEB5BF;
+
+    --back-gray01: #F3F5F8;
+    --back-gray02: #f4f4f4;
+    
+    --blue01: #408cff;
+    --blue-dis: #A0C6FF;
+    --red01: #E03030;
+    --green01: #14BF63;
+    --orange01: #FA8633;
+    --green01: #14BF63;
+
+    --line01: #dedede;
+    --line02: #DCE0E7;
+    --line03: #d9d9d9;
+    --line04: #ECECEC;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+label {
+  vertical-align: middle;
+}
+
+input {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    vertical-align: middle;
+    padding: 0;
+}
+input[type=radio], input[type=checkbox] {
+    vertical-align: middle;
+    margin-right: 3px;
+}
+button:disabled {
+    opacity: 0.5;
+}
+button {
+    font-size: inherit;
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-transform: none;
+    vertical-align: middle;
+}
+
+h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--black01);
+}
+
+div.mat-mdc-autocomplete-panel { 
+  --mat-autocomplete-background-color: #ffffff;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  font-size: 12px !important;
+  
+}
+
+.mat-mdc-option {
+  padding: 0 10px !important;
+  min-height: 30px !important;
+}
+
+
+.bold{font-weight: 700;}
+.txtBlue{color: var(--blue01);}
+
+.title-bg {
+    background-color: #fff;  
+    height: 50px !important;  
+    border-bottom: 1px solid #ddd;
+}
+
+.title-bg h2 {
+  margin-left: 10px;
+}
+.title-bg .topBtn {
+  padding-right: 10px;
+}
+
+.title-bg input {
+    border-radius: 4px;
+    border: 1px solid var(--line01) !important;
+    width: 100%;
+    padding: 0.75rem 1rem;
+}
+
+#loading{position:absolute; width:100%; height:100%; left:0; top:0; z-index:99999; background:rgba(255,255,255,0.85)}
+#loading-form {position:absolute; width:100%; height:100%; left:0; top:0; z-index:99999; background:rgba(255,255,255,0.85)}
+.loading-areas {position:absolute; width:100%; height:100%; left:0; top:0; z-index:99999; background:rgba(255,255,255,0.85)}
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loading-bar {
+    display: inline-block;
+    margin:0 3px;
+    width: 4px;
+    height: 18px;
+    border-radius: 4px;
+    animation: loading 1s ease-in-out infinite;
+}
+.loading-bar:nth-child(1) {
+    background-color: #3498db;
+    animation-delay: 0;
+}
+.loading-bar:nth-child(2) {
+    background-color: #c0392b;
+    animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+    background-color: #f1c40f;
+    animation-delay: .18s;
+}
+.loading-bar:nth-child(4) {
+    background-color: #27ae60;
+    animation-delay: .27s;
+}
+
+.cIn {
+  color: #049fd8 !important;
+}
+
+.cOut {
+  color: red !important;
+}
+
+.mat-mdc-menu-panel {
+  background-color: white !important; /* 배경색 화이트 */
+  border-radius: 8px !important;      /* 모서리 둥글게 (선택사항) */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; /* 그림자 부드럽게 */
+}
+
+/* 메뉴 항목(아이템)의 스타일도 같이 조절할 경우 */
+.mat-mdc-menu-item {
+  color: #333 !important;
+  font-size: 14px;
+}
+
+/* 마우스 올렸을 때(Hover) 배경색 */
+.mat-mdc-menu-item:hover {
+  background-color: #f5f5f5 !important;
+}

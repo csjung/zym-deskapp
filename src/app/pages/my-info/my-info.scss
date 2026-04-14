@@ -1,0 +1,52 @@
+.top_info {
+    padding: 1rem;
+    border-radius: .5rem;
+    background: var(--blue01);
+    color: #fff;
+    margin: 10px;
+}
+
+.top_info .name_area .s_txt {
+    font-size: .75rem;
+    font-weight: 300;
+}
+
+.top_info .name_area .s_tit em {
+    font-weight: 700;
+    color: #fbff47;
+}
+
+.helpBtnWrap {
+    display: flex;
+    gap: .5rem;
+    margin: 1.5rem;
+}
+
+.helpBtnWrap button {
+    display: flex;
+    flex: 1 0 0;
+    padding: 1rem;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000000f;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.helpBtnWrap button.logOut span {
+    background: url(/media/icon20_logout-JSJ4OUN5.svg) no-repeat left 50%;
+}
+
+.helpBtnWrap button span {
+    font-size: .875rem;
+    font-weight: 700;
+    padding-left: 1.5rem;
+    color: var(--black02);
+}

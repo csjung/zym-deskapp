@@ -1,0 +1,48 @@
+<div fxLayout="column" >
+    <div class="title-bg" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%">
+        <h2 fxFlex="100px">화물정보</h2>
+        <button (click)="filter()"><mat-icon style="color: #408cff; position: relative;top:5px;left: 0px;width: 40px;height: 30px;">tune</mat-icon></button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="none center" style="padding-top: 10px; background-color: white;" >
+        <button (click)="move(-1)"><mat-icon style="color: blue;" title="어제" >chevron_left</mat-icon></button>
+        <input type="text" style="width: 60px;" [(ngModel)]="inDate" />
+        <button (click)="move(1)"><mat-icon style="color: blue;" title="내일">chevron_right</mat-icon></button>
+        <input type="text" style="width: 100px;" [(ngModel)]="searchWord" placeholder="청구처,화주,CON,B/L">&nbsp;
+        <input type="text" style="width: 100px;" [(ngModel)]="searchLine" placeholder="LINE,상하차지,차량,비고,운송사">
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="5px" style="margin: 10px; ">
+        @for (cargo of cargoList; track $index) {
+            <a [routerLink]="['/pages/cargo-input/' + cargo.id]" class="list">
+                <div class="address_wrap">
+                <div class="state_label"><span style="background: var(--green01);">{{cargo.status}}</span></div>
+                <div class="add" fxLayout="row" fxLayoutAlign="space-between center" >
+                    <span style="width: 80%;">{{cargo.area}}</span>
+                    <span style="text-align: right;padding-right: 10px;font-size: 13px;">{{cargo.cheonggu | company}}</span>
+                </div>
+                <div class="date" fxLayout="row" fxLayoutAlign="space-between center">
+                    <span>{{cargo.inTime}} {{cargo.container}} {{cargo.cargoType == '수입' ? cargo.cargoInbound?.line : cargo.cargoOutbound?.line}}</span>
+                    <span class="size right">{{cargo.cargoSize}}/{{cargo.weight | number}}kg</span>
+                </div>
+                </div>
+                <div class="navi_wrap" fxLayout="row" fxLayoutAlign="space-between center">
+                    <ul class="point import">
+                        <li>{{cargo.caravan}}</li>
+                        <li>{{cargo.quit}}</li>
+                    </ul>                    
+                    <div class="trade_label import" [ngClass]="cargo.cargoType == '수입' ? 'trade_label import' : 'trade_label export'">{{cargo.cargoType}}</div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+@if (loading()) {
+<div id="loading">
+  <div class="loading">
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+  </div>
+</div>
+}

@@ -1,0 +1,35 @@
+.pop_head { position: relative; padding: 1rem 1.5rem; text-align: center; }
+.pop_head .pop_title{ font-size: 1rem; font-weight: 700; color: var(--black01); }
+.pop_head .pop_close{ position: absolute; width: 20px; height: 20px; top: 50%; right: 1.5rem; margin-top: -10px; }
+
+.pop_content .txt_box{ padding: 1rem; background: var(--back-gray02); color: var(--black02); font-size: .875rem; font-weight: 400; border-radius: 4px; line-height: normal; }
+.pop_content * + .txt_list{ margin-top: 1rem; }
+.pop_content .txt_list{ padding: 0 1rem; }
+.pop_content .txt_list li{ color: var(--black02); }
+.pop_content .txt_list li + li{ margin-top: 4px; }
+.pop_content .txt_list.small li{ font-size: 0.75rem; }
+.pop_content .txt_list.bold li{ font-weight: 700; }
+
+.filter_selWrap + .filter_selWrap { margin-top: 1rem; }
+.filter_selWrap .sel_list .sel_item { font-size: .875rem; color: var(--black01); font-weight: 400; padding: .5rem .5rem; border-radius: 4px; border: 1px solid var(--line04); margin-bottom: .5rem; }
+.filter_selWrap .sel_list .sel_item.on{ color: var(--blue01); font-weight: 700; border: 1px solid var(--blue01); }
+
+
+.button {
+    display: block;
+    height: 2.87rem;
+    line-height: 2.87rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.button.blue {
+    color: #fff;
+    background: var(--blue01);
+}
+
+.button.red {
+    color: #fff;
+    background: var(--red01);
+}
